@@ -13,7 +13,7 @@ This repository contains a minimal FastAPI backend that demonstrates parsing a C
 - Created a React dashboard for severity summaries and remediation guidance.
 - Implemented GitHub Actions CI for automated backend validation.
 - Designed the project around real DevSecOps workflows: detect, prioritize, remediate, and document.
-- 
+  
 ## Structure
 
 - [backend/main.py](backend/main.py)
