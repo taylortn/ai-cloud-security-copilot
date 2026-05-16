@@ -40,6 +40,26 @@ curl http://127.0.0.1:8000/analyze
 
 The `/analyze` endpoint loads the sample Checkov report at `backend/sample_checkov_report.json`, parses failed checks, returns a severity summary, and adds simple, human-friendly remediation suggestions.
 
+## Testing file upload via /docs (Swagger UI)
+
+1. Start the API as above:
+
+```bash
+uvicorn backend.main:app --reload --port 8000
+```
+
+2. Open the interactive docs at `http://127.0.0.1:8000/docs`.
+
+3. Use the `POST /analyze/upload` endpoint, choose `file` and upload `backend/sample_checkov_report.json`, then click `Execute` to see the parsed findings and remediation text.
+
+You can also test upload with `curl`:
+
+```bash
+curl -X POST "http://127.0.0.1:8000/analyze/upload" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "file=@backend/sample_checkov_report.json;type=application/json"
+```
+
+If an invalid JSON file is uploaded the API will return HTTP 400 with a clear error message.
+
 ## Notes & Next Steps
 
 - This MVP is intentionally simple and beginner-friendly. Next improvements could include:

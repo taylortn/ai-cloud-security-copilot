@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, HTTPException, status
 from pathlib import Path
 import json
 from collections import Counter
@@ -74,4 +74,35 @@ def analyze():
         "summary_by_severity": summary,
         "total_findings": len(findings),
         "findings": findings,
+    }
+
+
+@app.post("/analyze/upload")
+async def analyze_upload(file: UploadFile = File(...)):
+    """Accept an uploaded Checkov JSON file, parse failed checks, and return remediation guidance.
+
+    Returns 400 on invalid JSON with a clear message.
+    """
+    # Basic content-type hint acceptance but allow common JSON-like uploads
+    try:
+        content = await file.read()
+        report = json.loads(content)
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Invalid JSON file uploaded: {str(e)}",
+        )
+
+    findings = parse_failed_checks(report)
+    for f in findings:
+        f["remediation"] = generate_remediation(f)
+
+    summary = summarize_by_severity(findings)
+    remediation_text = "\n".join([f"- {f.get('check_id')}: {f.get('remediation')}" for f in findings])
+
+    return {
+        "summary_by_severity": summary,
+        "total_findings": len(findings),
+        "findings": findings,
+        "remediation_text": remediation_text,
     }
