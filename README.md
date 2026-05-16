@@ -2,6 +2,10 @@
 
 This repository contains a minimal FastAPI backend that demonstrates parsing a Checkov JSON report, summarizing failed IaC security checks by severity, and generating plain-English remediation guidance.
 
+## Dashboard Preview
+
+![Dashboard preview](docs/dashboard.png)
+
 ## Structure
 
 - [backend/main.py](backend/main.py)
