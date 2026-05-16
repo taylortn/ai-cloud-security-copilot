@@ -60,6 +60,27 @@ curl -X POST "http://127.0.0.1:8000/analyze/upload" -H "accept: application/json
 
 If an invalid JSON file is uploaded the API will return HTTP 400 with a clear error message.
 
+## Frontend (React + Vite)
+
+This repository includes a simple React frontend in the `frontend/` folder that lets you upload a Checkov JSON report and displays counts, findings, and remediation text.
+
+Setup (local):
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+By default Vite runs on port 5173. The frontend will call the backend at `/analyze/upload`. During development you can run the backend with:
+
+```bash
+# from repo root
+uvicorn backend.main:app --reload --port 8000
+```
+
+If you host frontend and backend on different origins, update the allowed origins list in `backend/main.py` (CORS middleware).
+
 ## Notes & Next Steps
 
 - This MVP is intentionally simple and beginner-friendly. Next improvements could include:

@@ -1,9 +1,19 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 import json
 from collections import Counter
 
 app = FastAPI(title="AI Cloud Security Remediation Copilot - MVP")
+
+# Allow requests from the frontend dev server
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def load_report(path: Path = None):
