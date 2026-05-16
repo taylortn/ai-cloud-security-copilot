@@ -1,0 +1,33 @@
+{
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_20",
+        "check_name": "S3 bucket has public ACL",
+        "file_path": "s3_bucket.tf",
+        "severity": "HIGH",
+        "start_line": 12,
+        "end_line": 20,
+        "message": "S3 Bucket allows public read"
+      },
+      {
+        "check_id": "CKV_AWS_79",
+        "check_name": "IAM role with wildcard permissions",
+        "file_path": "iam_roles.tf",
+        "severity": "CRITICAL",
+        "start_line": 5,
+        "end_line": 15,
+        "message": "IAM policy allows Action: * on Resource: *"
+      },
+      {
+        "check_id": "CKV_AWS_999",
+        "check_name": "Security group allows 0.0.0.0/0",
+        "file_path": "security_groups.tf",
+        "severity": "MEDIUM",
+        "start_line": 8,
+        "end_line": 25,
+        "message": "Security group ingress from 0.0.0.0/0 on port 22"
+      }
+    ]
+  }
+}
