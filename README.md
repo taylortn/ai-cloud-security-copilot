@@ -6,6 +6,14 @@ This repository contains a minimal FastAPI backend that demonstrates parsing a C
 
 ![Dashboard preview](docs/dashboard.png)
 
+## Project Highlights
+
+- Built a FastAPI backend that parses Checkov JSON scan results.
+- Added file upload support for custom IaC security reports.
+- Created a React dashboard for severity summaries and remediation guidance.
+- Implemented GitHub Actions CI for automated backend validation.
+- Designed the project around real DevSecOps workflows: detect, prioritize, remediate, and document.
+- 
 ## Structure
 
 - [backend/main.py](backend/main.py)
