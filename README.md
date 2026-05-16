@@ -66,5 +66,4 @@ If an invalid JSON file is uploaded the API will return HTTP 400 with a clear er
   - Accepting uploaded reports or report paths via the API
   - Richer remediation templates and links to docs
   - Authentication and logging
-# ai-cloud-security-copilot
-Built an AI-powered cloud security remediation copilot that analyzes IaC security scan results, prioritizes cloud misconfigurations, and generates remediation guidance for DevSecOps teams using FastAPI, React, Checkov, Docker, and GitHub Actions.
+
